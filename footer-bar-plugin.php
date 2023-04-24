@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: Barra Contatti 2
+Plugin Name: Contact Icon Manager
 Description: Aggiunge una barra su dispositivi mobili, attiva cookie script, un tasto WhatsApp e un numero di telefono.
-Version: 2
+Version: 2.1
 Author: Alin Sfirschi
 Author URI: https://wpaper.it
 */
