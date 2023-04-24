@@ -6,6 +6,47 @@ function contact_icon_manager_public_scripts() {
 }
 add_action('wp_enqueue_scripts', 'contact_icon_manager_public_scripts');
 
+function contact_icon_manager_custom_css() {
+    $bar_height = get_option( 'bar_height', '60' );
+    $icon_width = get_option( 'icon_width', '20' );
+    $gdpr_button_color = get_option( 'gdpr_button_color', '#000000' );
+    $whatsapp_button_color = get_option( 'whatsapp_button_color', '#000000' );
+    $phone_button_color = get_option( 'phone_button_color', '#000000' );
+
+    ob_start();
+    ?>
+    <style>
+        .mobile-bar {
+            height: <?php echo esc_attr( $bar_height ); ?>px;
+        }
+        .mobile-bar-section {
+            height: <?php echo esc_attr( $bar_height ); ?>px;
+            line-height: <?php echo esc_attr( $bar_height ); ?>px;
+        }
+        .mobile-bar-section img {
+            width: <?php echo esc_attr( $icon_width ); ?>px;
+        }
+        .mobile-bar-section:nth-child(1) {
+            background-color: <?php echo esc_attr( $gdpr_button_color ); ?>;
+        }
+        .mobile-bar-section:nth-child(2) {
+            background-color: <?php echo esc_attr( $whatsapp_button_color ); ?>;
+        }
+        .mobile-bar-section:nth-child(3) {
+            background-color: <?php echo esc_attr( $phone_button_color ); ?>;
+        }
+        body {
+            margin-bottom: <?php echo esc_attr( $bar_height ); ?>px;
+        }
+    </style>
+    <?php
+    $custom_css = ob_get_clean();
+
+    echo $custom_css;
+}
+add_action( 'wp_head', 'contact_icon_manager_custom_css' );
+
+
 
 function mobile_bar_plugin() {
     if ( wp_is_mobile() ) {
@@ -23,6 +64,8 @@ function mobile_bar_plugin() {
         $whatsapp_icon = get_option( 'whatsapp_icon', '' );
         $phone_icon = get_option( 'phone_icon', '' );
         $custom_field_icon = get_option( 'custom_field_icon', '' );
+
+
 
 		// Check if at least one option is enabled GDPR | WhatsApp | Phone | Custom Field 
         if ( $gdpr_enabled || $whatsapp_number || $phone_number || $custom_field_enabled ) {
@@ -112,49 +155,26 @@ function mobile_bar_plugin() {
     add_action( 'wp_footer', 'mobile_bar_plugin' );
 
 
-    // style css
-    <style>
-    <?php include plugin_dir_path( __FILE__ ) . '../assets/css/public-style.css'; ?>
 
-    .mobile-bar {
-        height: <?php echo esc_attr( $bar_height ); ?>px;
-    }
-    .mobile-bar-section {
-        height: <?php echo esc_attr( $bar_height ); ?>px;
-        line-height: <?php echo esc_attr( $bar_height ); ?>px;
-    }
-    .mobile-bar-section img {
-        width: <?php echo esc_attr( $icon_width ); ?>px;
-    }
-    .mobile-bar-section:nth-child(1) {
-        background-color: <?php echo esc_attr( $gdpr_button_color ); ?>;
-    }
-    .mobile-bar-section:nth-child(2) {
-        background-color: <?php echo esc_attr( $whatsapp_button_color ); ?>;
-    }
-    .mobile-bar-section:nth-child(3) {
-        background-color: <?php echo esc_attr( $phone_button_color ); ?>;
-    }
-    body {
-        margin-bottom: <?php echo esc_attr( $bar_height ); ?>px;
-    }
-    </style>
 
     add_action( 'admin_menu', 'mobile_bar_plugin_settings' );
 
     // Funzione che genera lo shortcode
 
+
     function gdpr_shortcode_button( $atts ) {
-        ob_start();
-        ?>
-        <button onclick="CookieScript.instance.show();">GDPR</button>
-        <script>
-            function custom_hook_cookies_banner() {
-                CookieScript.instance.currentState();
+     ob_start();
+     ?>
+     <button onclick="CookieScript.instance.show();">GDPR</button>
+     <script>
+     
+        function custom_hook_cookies_banner() {
+            CookieScript.instance.currentState();
             }
-        </script>
-        <?php
-        return ob_get_clean();
+
+    </script>
+    <?php
+    return ob_get_clean();
     }
     add_shortcode( 'gdpr_button', 'gdpr_shortcode_button' );
 
