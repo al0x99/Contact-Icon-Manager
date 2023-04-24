@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: Contact Icon Manager
-Description: Aggiunge una barra su dispositivi mobili, attiva cookie script, un tasto WhatsApp e un numero di telefono.
-Version: 3.0.0
+Description: This plugin allows you to add a mobile bar with icons to your website. You can add a WhatsApp, Phone, Custom Field and GDPR icon.
+Version: 3.0.1
 Author: Alin Sfirschi
 Author URI: https://wpaper.it
 GitHub Plugin URI: https://github.com/al0x99/Contact-Icon-Manager
