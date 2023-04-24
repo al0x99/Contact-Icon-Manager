@@ -5,6 +5,7 @@ Description: Aggiunge una barra su dispositivi mobili, attiva cookie script, un 
 Version: 2.1
 Author: Alin Sfirschi
 Author URI: https://wpaper.it
+GitHub Plugin URI: https://github.com/al0x99/Contact-Icon-Manager
 */
 
 if ( ! defined( 'ABSPATH' ) ) {
