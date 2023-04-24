@@ -1,5 +1,11 @@
 <?php
 
+function contact_icon_manager_public_scripts() {
+    wp_enqueue_style('contact-icon-manager-public-style', plugin_dir_url(__FILE__) . '../assets/css/public-style.css');
+    wp_enqueue_script('contact-icon-manager-public-script', plugin_dir_url(__FILE__) . '../assets/js/public-script.js', array('jquery'), false, true);
+}
+add_action('wp_enqueue_scripts', 'contact_icon_manager_public_scripts');
+
 
 function mobile_bar_plugin() {
     if ( wp_is_mobile() ) {
@@ -33,60 +39,7 @@ function mobile_bar_plugin() {
             <?php
             }
             ?>
-		<style>
-			.mobile-bar {
-                display: flex;
-                flex-direction: row;
-                justify-content: stretch;
-                align-items: center;
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                background-color: transparent;
-                padding: 10px 0;
-                z-index: 9999;
-                width: 100%;
-                box-sizing: border-box;
-				align-items:center;
-				height: <?php echo esc_attr( $bar_height ); ?>px;
-            }
-            .mobile-bar-section {
-                flex: 1;
-                text-align: center;
-                color: #fff;
-                padding: 0 2px;
-				height: <?php echo esc_attr( $bar_height ); ?>px;
-				align-items:center;
-				line-height: <?php echo esc_attr( $bar_height ); ?>px;
-            }
-			.mobile-bar-section img {
-				width: <?php echo esc_attr( $icon_width ); ?>px;
-				height: auto;
-				display: inline-block;
-				vertical-align: middle;
-			}
-            .mobile-bar-section a {
-                text-decoration: none;
-				color: inherit;
-				display: block;
-				width: 100%;
-				height: 100%;
-            }
-            .mobile-bar-section:nth-child(1) {
-                background-color: <?php echo esc_attr( $gdpr_button_color ); ?>;
-            }
-            .mobile-bar-section:nth-child(2) {
-                background-color: <?php echo esc_attr( $whatsapp_button_color ); ?>;
-            }
-            .mobile-bar-section:nth-child(3) {
-                background-color: <?php echo esc_attr( $phone_button_color ); ?>;
-            }
-            body {
-                margin-bottom: <?php echo esc_attr( $bar_height ); ?>px; /* Aumenta il margine inferiore per evitare che la barra copra il contenuto del sito */
-            }
 
-        </style>
 		<div class="mobile-bar">
 			<?php if ( $gdpr_enabled ) : ?>
 				<a href="#" onclick="do_action('custom_hook_cookies_banner')" class="mobile-bar-section">
@@ -177,16 +130,8 @@ function mobile_bar_plugin() {
     }
     add_shortcode( 'gdpr_button', 'gdpr_shortcode_button' );
 
-
-
     add_action( 'admin_init', 'mobile_bar_plugin_settings_init' );
 
-
-
-	function mobile_bar_plugin_admin_style() {
-		wp_enqueue_style( 'mobile-bar-plugin-admin-style', plugin_dir_url( __FILE__ ) . 'admin-style.css' );
-		wp_enqueue_script( 'mobile-bar-plugin-admin-script', plugin_dir_url( __FILE__ ) . 'admin-script.js', array( 'jquery' ), false, true );
-	}
 	add_action( 'admin_enqueue_scripts', 'mobile_bar_plugin_admin_style' );
 
 ?>
