@@ -112,6 +112,34 @@ function mobile_bar_plugin() {
     add_action( 'wp_footer', 'mobile_bar_plugin' );
 
 
+    // style css
+    <style>
+    <?php include plugin_dir_path( __FILE__ ) . '../assets/css/public-style.css'; ?>
+
+    .mobile-bar {
+        height: <?php echo esc_attr( $bar_height ); ?>px;
+    }
+    .mobile-bar-section {
+        height: <?php echo esc_attr( $bar_height ); ?>px;
+        line-height: <?php echo esc_attr( $bar_height ); ?>px;
+    }
+    .mobile-bar-section img {
+        width: <?php echo esc_attr( $icon_width ); ?>px;
+    }
+    .mobile-bar-section:nth-child(1) {
+        background-color: <?php echo esc_attr( $gdpr_button_color ); ?>;
+    }
+    .mobile-bar-section:nth-child(2) {
+        background-color: <?php echo esc_attr( $whatsapp_button_color ); ?>;
+    }
+    .mobile-bar-section:nth-child(3) {
+        background-color: <?php echo esc_attr( $phone_button_color ); ?>;
+    }
+    body {
+        margin-bottom: <?php echo esc_attr( $bar_height ); ?>px;
+    }
+    </style>
+
     add_action( 'admin_menu', 'mobile_bar_plugin_settings' );
 
     // Funzione che genera lo shortcode
