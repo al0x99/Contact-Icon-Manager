@@ -51,6 +51,7 @@ function mobile_bar_plugin_settings_page() {
 							<input type="button" class="button custom_media_remove" value="Rimuovi immagine">
 						</td>
 					</tr>
+					
 
 					<tr valign="top">
 						<th scope="row">Altezza della barra (in pixel)</th>
@@ -104,6 +105,18 @@ function mobile_bar_plugin_settings_page() {
 							<?php endif; ?>
 							<input type="button" class="button custom_media_remove" value="Rimuovi immagine">
 						</td>
+
+						!TODO: Add icon picker
+						<!-- <div class="icon-picker"> 
+							<img src="<?php echo plugin_dir_url( __FILE__ ); ?>icons/whatsapp.svg" alt="Predefined Icon" width="20" class="predefined_icon">
+							<input type="radio" class="icon-picker-radio" name="map_icon_predefined" value="<?php echo plugin_dir_url( __FILE__ ); ?>icons/icon_name.svg">
+						</div>
+						<div class="icon-picker">
+							<span>Nessuna icona predefinita</span>
+							<input type="radio" class="icon-picker-radio" name="map_icon_predefined" value="">
+						</div> -->
+						
+
                     </tr>
                     <tr valign="top">
                         <th scope="row">Numero di telefono</th>
@@ -218,9 +231,11 @@ function mobile_bar_plugin_settings_page() {
 		
     }
 
-function mobile_bar_plugin_admin_style() {
-	wp_enqueue_style( 'mobile-bar-plugin-admin-style', plugin_dir_url( __FILE__ ) . 'admin-style.css' );
-	wp_enqueue_script( 'mobile-bar-plugin-admin-script', plugin_dir_url( __FILE__ ) . 'admin-script.js', array( 'jquery' ), false, true );
+	function mobile_bar_plugin_admin_style() {
+		wp_enqueue_media();
+		wp_enqueue_style('mobile-bar-plugin-admin-style', plugin_dir_url(__FILE__).'admin-style.css');
+		wp_enqueue_script('mobile-bar-plugin-admin-script', plugin_dir_url(__FILE__).'admin-script.js', array('jquery'), false, true);
+	}
 	
-}
+	add_action('admin_enqueue_scripts', 'mobile_bar_plugin_admin_style');
 ?>

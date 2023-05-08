@@ -20,8 +20,6 @@ function contact_icon_manager_custom_css() {
     $whatsapp_button_color = get_option( 'whatsapp_button_color', '#000000' );
     $phone_button_color = get_option( 'phone_button_color', '#000000' );
 
-    $active_button_index = 1;
-
     ob_start();
     ?>
     <style>
@@ -75,6 +73,7 @@ function mobile_bar_plugin() {
         $whatsapp_icon = get_option( 'whatsapp_icon', '' );
         $phone_icon = get_option( 'phone_icon', '' );
         $custom_field_icon = get_option( 'custom_field_icon', '' );
+        $map_address = get_option( 'map_address', '' );
 
 
 
@@ -94,8 +93,8 @@ function mobile_bar_plugin() {
             }
             ?>
 
-		<div class="mobile-bar">
-            <?php if ( $gdpr_enabled ) : ?>
+        <div class="mobile-bar">
+            <?php if ( $gdpr_enabled && (get_option( 'gdpr_button_text') || get_option( 'gdpr_icon')) ) : ?>
                 <a href="#" onclick="do_action('custom_hook_cookies_banner')" class="mobile-bar-section gdpr-button">
                     <?php if ( $gdpr_icon ) : ?>
                         <img src="<?php echo esc_url( $gdpr_icon ); ?>" alt="GDPR Icon" />
@@ -104,7 +103,7 @@ function mobile_bar_plugin() {
                 </a>
             <?php endif; ?>
 
-            <?php if ( $whatsapp_number ) : ?>
+            <?php if ( $whatsapp_number && (get_option( 'whatsapp_button_text') || get_option( 'whatsapp_icon')) ) : ?>
                 <a href="https://wa.me/<?php echo esc_attr( $whatsapp_number ); ?>" target="_blank" class="mobile-bar-section whatsapp-button" data-event-type="button_click" data-event-detail="whatsapp_button_click">
                     <?php if ( $whatsapp_icon ) : ?>
                         <img src="<?php echo esc_url( $whatsapp_icon ); ?>" alt="WhatsApp Icon" />
@@ -113,7 +112,7 @@ function mobile_bar_plugin() {
                 </a>
             <?php endif; ?>
 
-            <?php if ( $phone_number ) : ?>
+            <?php if ( $phone_number && (get_option( 'phone_button_text') || get_option( 'phone_icon')) ) : ?>
                 <a href="tel:<?php echo esc_attr( $phone_number ); ?>" class="mobile-bar-section phone-button" data-event-type="button_click" data-event-detail="phone_button_click">
                     <?php if ( $phone_icon ) : ?>
                         <img src="<?php echo esc_url( $phone_icon ); ?>" alt="Phone Icon" />
@@ -121,26 +120,27 @@ function mobile_bar_plugin() {
                     <?php echo esc_html( get_option( 'phone_button_text', 'T' ) ); ?>
                 </a>
             <?php endif; ?>
-            
-           <?php if ( $custom_field_enabled ) : ?>
-				<div class="mobile-bar-section" style="background-color: <?php echo esc_attr( $custom_field_background_color ); ?>;">
-					<?php if ( $custom_field_icon ) : ?>
-						<img src="<?php echo esc_url( $custom_field_icon ); ?>" alt="Custom Field Icon" />
-					<?php endif; ?>
-					<?php echo esc_html( $custom_field_text ); ?>
-				</div>
-			<?php endif; ?>
 
-			<?php if ( $map_address = get_option( 'map_address' ) ) : ?>
-				<a href="javascript:void(0);" onclick="openMap('<?php echo esc_attr( $map_address ); ?>');" class="mobile-bar-section" style="background-color: <?php echo esc_attr( get_option( 'map_button_color', '#000000' ) ); ?>;">
-					<?php if ( $map_icon = get_option( 'map_icon' ) ) : ?>
-						<img src="<?php echo esc_url( $map_icon ); ?>" alt="Map Icon" />
-					<?php else: ?>
-						<?php echo esc_html( get_option( 'map_button_text', 'Mappa' ) ); ?>
-					<?php endif; ?>
-				</a>
-			<?php endif; ?>
-		</div>
+            <?php if ( $custom_field_enabled ) : ?>
+                <div class="mobile-bar-section" style="background-color: <?php echo esc_attr( $custom_field_background_color ); ?>;">
+                    <?php if ( $custom_field_icon ) : ?>
+                        <img src="<?php echo esc_url( $custom_field_icon ); ?>" alt="Custom Field Icon" />
+                    <?php endif; ?>
+                    <?php echo esc_html( $custom_field_text ); ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if ( $map_address ) : ?>
+                <a href="javascript:void(0);" onclick="openMap('<?php echo esc_attr( $map_address ); ?>');" class="mobile-bar-section" style="background-color: <?php echo esc_attr( get_option( 'map_button_color', '#000000' ) ); ?>;">
+                    <?php if ( $map_icon = get_option( 'map_icon' ) ) : ?>
+                        <img src="<?php echo esc_url( $map_icon ); ?>" alt="Map Icon" />
+                    <?php else: ?>
+                        <?php echo esc_html( get_option( 'map_button_text', 'Mappa' ) ); ?>
+                    <?php endif; ?>
+                </a>
+            <?php endif; ?>
+        </div>
+
                 <script>
                     function do_action(hook_name) {
                         if (typeof window[hook_name] === 'function') {
@@ -195,5 +195,7 @@ function mobile_bar_plugin() {
 	add_action( 'admin_enqueue_scripts', 'mobile_bar_plugin_admin_style' );
 
     add_action('wp_enqueue_scripts', 'mobile_bar_plugin_public_scripts');
+
+    add_action('wp_enqueue_scripts', 'contact_icon_manager_public_scripts');
 
 ?>
