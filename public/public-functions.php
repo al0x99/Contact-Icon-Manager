@@ -4,7 +4,14 @@ function contact_icon_manager_public_scripts() {
     wp_enqueue_style('contact-icon-manager-public-style', plugin_dir_url(__FILE__) . '../assets/css/public-style.css');
     wp_enqueue_script('contact-icon-manager-public-script', plugin_dir_url(__FILE__) . '../assets/js/public-script.js', array('jquery'), false, true);
 }
+
+function mobile_bar_plugin_public_scripts() {
+    wp_enqueue_script('mobile-bar-plugin-public-functions-js', plugins_url( 'public-functions.js', __FILE__ ), array('jquery'), null, true);
+}
+
 add_action('wp_enqueue_scripts', 'contact_icon_manager_public_scripts');
+
+
 
 function contact_icon_manager_custom_css() {
     $bar_height = get_option( 'bar_height', '60' );
@@ -12,6 +19,8 @@ function contact_icon_manager_custom_css() {
     $gdpr_button_color = get_option( 'gdpr_button_color', '#000000' );
     $whatsapp_button_color = get_option( 'whatsapp_button_color', '#000000' );
     $phone_button_color = get_option( 'phone_button_color', '#000000' );
+
+    $active_button_index = 1;
 
     ob_start();
     ?>
@@ -26,15 +35,17 @@ function contact_icon_manager_custom_css() {
         .mobile-bar-section img {
             width: <?php echo esc_attr( $icon_width ); ?>px;
         }
-        .mobile-bar-section:nth-child(1) {
+        .gdpr-button {
             background-color: <?php echo esc_attr( $gdpr_button_color ); ?>;
         }
-        .mobile-bar-section:nth-child(2) {
+        .whatsapp-button {
             background-color: <?php echo esc_attr( $whatsapp_button_color ); ?>;
         }
-        .mobile-bar-section:nth-child(3) {
+        .phone-button {
             background-color: <?php echo esc_attr( $phone_button_color ); ?>;
         }
+        /* altri metodi qui  */
+
         body {
             margin-bottom: <?php echo esc_attr( $bar_height ); ?>px;
         }
@@ -84,33 +95,34 @@ function mobile_bar_plugin() {
             ?>
 
 		<div class="mobile-bar">
-			<?php if ( $gdpr_enabled ) : ?>
-				<a href="#" onclick="do_action('custom_hook_cookies_banner')" class="mobile-bar-section">
-					<?php if ( $gdpr_icon ) : ?>
-						<img src="<?php echo esc_url( $gdpr_icon ); ?>" alt="GDPR Icon" />
-					<?php endif; ?>
-					<?php echo esc_html( get_option( 'gdpr_button_text', 'C' ) ); ?>
-				</a>
-			<?php endif; ?>
+            <?php if ( $gdpr_enabled ) : ?>
+                <a href="#" onclick="do_action('custom_hook_cookies_banner')" class="mobile-bar-section gdpr-button">
+                    <?php if ( $gdpr_icon ) : ?>
+                        <img src="<?php echo esc_url( $gdpr_icon ); ?>" alt="GDPR Icon" />
+                    <?php endif; ?>
+                    <?php echo esc_html( get_option( 'gdpr_button_text', 'C' ) ); ?>
+                </a>
+            <?php endif; ?>
 
-			<?php if ( $whatsapp_number ) : ?>
-				<a href="https://wa.me/<?php echo esc_attr( $whatsapp_number ); ?>" target="_blank" class="mobile-bar-section">
-					<?php if ( $whatsapp_icon ) : ?>
-						<img src="<?php echo esc_url( $whatsapp_icon ); ?>" alt="WhatsApp Icon" />
-					<?php endif; ?>
-					<?php echo esc_html( get_option( 'whatsapp_button_text', 'W' ) ); ?>
-				</a>
-			<?php endif; ?>
+            <?php if ( $whatsapp_number ) : ?>
+                <a href="https://wa.me/<?php echo esc_attr( $whatsapp_number ); ?>" target="_blank" class="mobile-bar-section whatsapp-button" data-event-type="button_click" data-event-detail="whatsapp_button_click">
+                    <?php if ( $whatsapp_icon ) : ?>
+                        <img src="<?php echo esc_url( $whatsapp_icon ); ?>" alt="WhatsApp Icon" />
+                    <?php endif; ?>
+                    <?php echo esc_html( get_option( 'whatsapp_button_text', 'W' ) ); ?>
+                </a>
+            <?php endif; ?>
 
-			<?php if ( $phone_number ) : ?>
-				<a href="tel:<?php echo esc_attr( $phone_number ); ?>" class="mobile-bar-section">
-					<?php if ( $phone_icon ) : ?>
-						<img src="<?php echo esc_url( $phone_icon ); ?>" alt="Phone Icon" />
-					<?php endif; ?>
-					<?php echo esc_html( get_option( 'phone_button_text', 'T' ) ); ?>
-				</a>
-			<?php endif; ?>
-			<?php if ( $custom_field_enabled ) : ?>
+            <?php if ( $phone_number ) : ?>
+                <a href="tel:<?php echo esc_attr( $phone_number ); ?>" class="mobile-bar-section phone-button" data-event-type="button_click" data-event-detail="phone_button_click">
+                    <?php if ( $phone_icon ) : ?>
+                        <img src="<?php echo esc_url( $phone_icon ); ?>" alt="Phone Icon" />
+                    <?php endif; ?>
+                    <?php echo esc_html( get_option( 'phone_button_text', 'T' ) ); ?>
+                </a>
+            <?php endif; ?>
+            
+           <?php if ( $custom_field_enabled ) : ?>
 				<div class="mobile-bar-section" style="background-color: <?php echo esc_attr( $custom_field_background_color ); ?>;">
 					<?php if ( $custom_field_icon ) : ?>
 						<img src="<?php echo esc_url( $custom_field_icon ); ?>" alt="Custom Field Icon" />
@@ -181,5 +193,7 @@ function mobile_bar_plugin() {
     add_action( 'admin_init', 'mobile_bar_plugin_settings_init' );
 
 	add_action( 'admin_enqueue_scripts', 'mobile_bar_plugin_admin_style' );
+
+    add_action('wp_enqueue_scripts', 'mobile_bar_plugin_public_scripts');
 
 ?>
