@@ -41,8 +41,6 @@ function send_plugin_install_notification() {
     }
 }
 
-// Replace 'your-plugin-main-file.php' with the main file of your plugin
-register_activation_hook(__FILE__, 'send_plugin_install_notification');
 
 function mobile_bar_plugin_settings_page() {
         // Controlla se l'utente ha i permessi necessari per accedere alle impostazioni del plugin.
