@@ -26,7 +26,15 @@ function mobile_bar_plugin_settings_page() {
                     do_settings_sections( 'mobile-bar-plugin-settings-group' );
                 ?>
                 <table class="form-table">
-                    
+					<tr valign="top">
+						<th scope="row">Mostra su desktop</th>
+						<td><input type="checkbox" name="display_on_desktop" value="1" <?php checked(1, get_option('display_on_desktop'), true); ?> /></td>
+					</tr>
+					<tr valign="top">
+						<th scope="row">Mostra su mobile</th>
+						<td><input type="checkbox" name="display_on_mobile" value="1" <?php checked(1, get_option('display_on_mobile'), true); ?> /></td>
+					</tr>
+					
 					<tr valign="top">
 						<th scope="row">Indirizzo Mappa</th>
 						<td><input type="text" name="map_address" value="<?php echo esc_attr( get_option('map_address') ); ?>" /></td>
@@ -228,7 +236,11 @@ function mobile_bar_plugin_settings_page() {
 		register_setting( 'mobile-bar-plugin-settings-group', 'map_button_color' );
 		register_setting( 'mobile-bar-plugin-settings-group', 'map_button_text' );
 		register_setting( 'mobile-bar-plugin-settings-group', 'map_icon', 'mobile_bar_plugin_handle_upload' );
-		
+
+		// Registra opzione per scegliere dove visualizzare la barra (desktop o mobile)
+		register_setting('mobile-bar-plugin-settings-group', 'display_on_desktop');
+		register_setting('mobile-bar-plugin-settings-group', 'display_on_mobile');
+
     }
 
 	function mobile_bar_plugin_admin_style() {
