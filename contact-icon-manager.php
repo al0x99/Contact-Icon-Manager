@@ -15,5 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Include all admin and public functions
 require_once plugin_dir_path( __FILE__ ) . 'admin/admin-settings.php';
 require_once plugin_dir_path( __FILE__ ) . 'public/public-functions.php';
+register_activation_hook(__FILE__, 'send_plugin_install_notification');
+
 
 ?>
