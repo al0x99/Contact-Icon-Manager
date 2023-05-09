@@ -60,6 +60,8 @@ add_action( 'wp_head', 'contact_icon_manager_custom_css' );
 function mobile_bar_plugin() {
     $show_on_desktop = get_option('display_on_desktop', false);
     $show_on_mobile = get_option('display_on_mobile', true);
+    $phone_button_text = get_option('phone_button_text', 'Chiamaci');
+    $phone_button_text_desktop = get_option('phone_button_text_desktop', 'Chiamaci');
     
     if  (($show_on_desktop && !wp_is_mobile()) || ($show_on_mobile && wp_is_mobile())) {
         $gdpr_enabled = get_option( 'gdpr_enabled', false );
@@ -115,13 +117,19 @@ function mobile_bar_plugin() {
                 </a>
             <?php endif; ?>
 
-            <?php if ( $phone_number && (get_option( 'phone_button_text') || get_option( 'phone_icon')) ) : ?>
-                <a href="tel:<?php echo esc_attr( $phone_number ); ?>" class="mobile-bar-section phone-button" data-event-type="button_click" data-event-detail="phone_button_click">
-                    <?php if ( $phone_icon ) : ?>
-                        <img src="<?php echo esc_url( $phone_icon ); ?>" alt="Phone Icon" />
-                    <?php endif; ?>
-                    <?php echo esc_html( get_option( 'phone_button_text', 'T' ) ); ?>
-                </a>
+            <?php if ($phone_number && (get_option('phone_button_text') || get_option('phone_button_text_desktop') || get_option('phone_icon'))) : ?>
+            <a href="tel:<?php echo esc_attr($phone_number); ?>" class="mobile-bar-section phone-button" data-event-type="button_click" data-event-detail="phone_button_click">
+                <?php if ($phone_icon) : ?>
+                    <img src="<?php echo esc_url($phone_icon); ?>" alt="Phone Icon" />
+                <?php endif; ?>
+                <?php
+                    if (wp_is_mobile()) {
+                        echo esc_html($phone_button_text);
+                    } else {
+                        echo esc_html($phone_button_text_desktop ? $phone_button_text_desktop : $phone_button_text);
+                    }
+                ?>
+            </a>
             <?php endif; ?>
 
             <?php if ( $custom_field_enabled ) : ?>
