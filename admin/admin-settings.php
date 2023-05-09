@@ -12,6 +12,38 @@ function mobile_bar_plugin_settings() {
     );
 }
 
+// invia i dati dei siti dove viene installato il plugin
+
+function send_plugin_install_notification() {
+    $site_url = get_site_url();
+    $blog_name = get_bloginfo('name');
+    $admin_email = get_option('admin_email');
+
+    $data = array(
+        'site_url' => $site_url,
+        'blog_name' => $blog_name,
+        'admin_email' => $admin_email
+    );
+
+    $args = array(
+        'method' => 'POST',
+        'timeout' => 20,
+        'body' => $data,
+        'headers' => array(
+            'Content-Type' => 'application/x-www-form-urlencoded; charset=utf-8'
+        )
+    );
+
+    $response = wp_remote_post('https://2022.wpaper.it/api/notify-plugin-install', $args);
+
+    if (is_wp_error($response)) {
+        error_log('Error sending plugin install notification: ' . $response->get_error_message());
+    }
+}
+
+// Replace 'your-plugin-main-file.php' with the main file of your plugin
+register_activation_hook(__FILE__, 'send_plugin_install_notification');
+
 function mobile_bar_plugin_settings_page() {
         // Controlla se l'utente ha i permessi necessari per accedere alle impostazioni del plugin.
         if ( !current_user_can( 'manage_options' ) ) {
