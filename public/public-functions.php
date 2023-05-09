@@ -58,7 +58,10 @@ add_action( 'wp_head', 'contact_icon_manager_custom_css' );
 
 
 function mobile_bar_plugin() {
-    if ( wp_is_mobile() ) {
+    $show_on_desktop = get_option('display_on_desktop', false);
+    $show_on_mobile = get_option('display_on_mobile', true);
+    
+    if  (($show_on_desktop && !wp_is_mobile()) || ($show_on_mobile && wp_is_mobile())) {
         $gdpr_enabled = get_option( 'gdpr_enabled', false );
         $whatsapp_number = get_option( 'whatsapp_number', '' );
         $phone_number = get_option( 'phone_number', '' );
