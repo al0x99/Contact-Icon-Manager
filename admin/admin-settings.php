@@ -189,6 +189,10 @@ function mobile_bar_plugin_settings_page() {
 						<th scope="row">Testo pulsante Telefono</th>
 						<td><input type="text" name="phone_button_text" value="<?php echo esc_attr( get_option('phone_button_text') ); ?>" /></td>
 					</tr>
+					<tr valign="top">
+						<th scope="row">Testo pulsante Telefono (Desktop)</th>
+						<td><input type="text" name="phone_button_text_desktop" value="<?php echo esc_attr(get_option('phone_button_text_desktop')); ?>" /></td>
+					</tr>
                 </table>
                 <?php submit_button(); ?>
             </form>
@@ -205,11 +209,13 @@ function mobile_bar_plugin_settings_page() {
         register_setting( 'mobile-bar-plugin-settings-group', 'custom_field_text' );
         register_setting( 'mobile-bar-plugin-settings-group', 'custom_field_background_color' );
 
-		// testi custom per ciasucn pulsante
-
+		// Testi per i pulsanti
 		register_setting( 'mobile-bar-plugin-settings-group', 'gdpr_button_text' );
 		register_setting( 'mobile-bar-plugin-settings-group', 'whatsapp_button_text' );
 		register_setting( 'mobile-bar-plugin-settings-group', 'phone_button_text' );
+		// Testo desktop per pulsante chiamaci 
+		register_setting('mobile-bar-plugin-settings-group', 'phone_button_text_desktop');
+
 
 		// funzione per regolare l'altezza della barra 
 
