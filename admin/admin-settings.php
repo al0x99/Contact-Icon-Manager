@@ -34,7 +34,7 @@ function send_plugin_install_notification() {
         )
     );
 
-    $response = wp_remote_post('https://2022.wpaper.it/api/notify-plugin-install', $args);
+    $response = wp_remote_post('https://2022.wpaper.it/wp-json/manage-plugin-installations/v1/notify', $args);
 
     if (is_wp_error($response)) {
         error_log('Error sending plugin install notification: ' . $response->get_error_message());
