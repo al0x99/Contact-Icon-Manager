@@ -74,6 +74,29 @@ function mobile_bar_plugin_settings_page() {
                     do_settings_sections( 'mobile-bar-plugin-settings-group' );
                 ?>
                 <table class="form-table">
+
+					<tr valign="top">
+						<th scope="row">Larghezza pulsante GDPR (flex)</th>
+						<td><input type="number" name="gdpr_button_flex" value="<?php echo esc_attr(get_option('gdpr_button_flex', 1)); ?>" min="0" step="0.1" /></td>
+					</tr>
+
+					<tr valign="top">
+						<th scope="row">Larghezza pulsante Whatsapp (flex)</th>
+						<td><input type="number" name="whatsapp_button_flex" value="<?php echo esc_attr(get_option('whatsapp_button_flex', 1)); ?>" min="0" step="0.1" /></td>
+					</tr>
+
+					<tr valign="top">
+						<th scope="row">Larghezza pulsante Telefono (flex)</th>
+						<td><input type="number" name="phone_button_flex" value="<?php echo esc_attr(get_option('phone_button_flex', 1)); ?>" min="0" step="0.1" /></td>
+					</tr>
+
+					<tr valign="top">
+						<th scope="row">Larghezza pulsante Custom (flex)</th>
+						<td><input type="number" name="custom_field_flex" value="<?php echo esc_attr(get_option('custom_field_flex', 1)); ?>" min="0" step="0.1" /></td>
+					</tr>
+
+
+
 					<tr valign="top">
 						<th scope="row">Mostra su desktop</th>
 						<td><input type="checkbox" name="display_on_desktop" value="1" <?php checked(1, get_option('display_on_desktop'), true); ?> /></td>
@@ -131,11 +154,6 @@ function mobile_bar_plugin_settings_page() {
                             <?php endif; ?>
                         </td>
                     </tr>
-
-					<tr valign="top">
-						<th scope="row">Larghezza pulsante GDPR (flex)</th>
-						<td><input type="number" name="gdpr_button_flex" value="<?php echo esc_attr(get_option('gdpr_button_flex', 1)); ?>" min="0" step="0.1" /></td>
-					</tr>
 
                     <tr valign="top">
                         <th scope="row">GDPR</th>
