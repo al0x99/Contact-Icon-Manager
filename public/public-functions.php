@@ -23,7 +23,7 @@ function contact_icon_manager_custom_css() {
     $gdpr_button_flex = get_option('gdpr_button_flex', 1);
     $whatsapp_button_flex = get_option('whatsapp_button_flex', 1);
     $phone_button_flex = get_option('phone_button_flex', 1);
-    $map_address_button_flex = get_option('map_address_button_flex', 1);
+    $map_button_flex = get_option('map_button_flex', 1);
 
 
     ob_start();
@@ -52,9 +52,9 @@ function contact_icon_manager_custom_css() {
             background-color: <?php echo esc_attr( $phone_button_color ); ?>;
             flex: <?php echo esc_attr($phone_button_flex); ?>;
         }
-        .map_address {
+        .map_button {
             background-color: <?php echo esc_attr( $map_button_color ); ?>;
-            flex: <?php echo esc_attr($map_address_button_flex); ?>;
+            flex: <?php echo esc_attr($map_button_flex); ?>;
             
         }
 
@@ -87,7 +87,7 @@ function mobile_bar_plugin() {
         $gdpr_icon = get_option( 'gdpr_icon', '' );
         $whatsapp_icon = get_option( 'whatsapp_icon', '' );
         $phone_icon = get_option( 'phone_icon', '' );
-        $map_address = get_option( 'map_address', '' );
+        $map_button = get_option( 'map_button', '' );
 
 
 
@@ -138,8 +138,8 @@ function mobile_bar_plugin() {
             </a>
             <?php endif; ?>
 
-            <?php if ( $map_address ) : ?>
-                <a href="javascript:void(0);" onclick="openMap('<?php echo esc_attr( $map_address ); ?>');" class="mobile-bar-section" style="background-color: <?php echo esc_attr( get_option( 'map_button_color', '#000000' ) ); ?>;">
+            <?php if ( $map_button ) : ?>
+                <a href="javascript:void(0);" onclick="openMap('<?php echo esc_attr( $map_button ); ?>');" class="mobile-bar-section" style="background-color: <?php echo esc_attr( get_option( 'map_button_color', '#000000' ) ); ?>;">
                     <?php if ( $map_icon = get_option( 'map_icon' ) ) : ?>
                         <img src="<?php echo esc_url( $map_icon ); ?>" alt="Map Icon" />
                     <?php else: ?>

@@ -89,7 +89,7 @@ function mobile_bar_plugin_settings_page() {
 
 					<tr valign="top">
 						<th scope="row">Larghezza pulsante Mappa (flex)</th>
-						<td><input type="number" name="map_address_flex" value="<?php echo esc_attr(get_option('map_address_flex', 1)); ?>" min="0" step="0.1" /></td>
+						<td><input type="number" name="map_button_flex" value="<?php echo esc_attr(get_option('map_button_flex', 1)); ?>" min="0" step="0.1" /></td>
 					</tr>
 
 
@@ -105,7 +105,7 @@ function mobile_bar_plugin_settings_page() {
 					
 					<tr valign="top">
 						<th scope="row">Indirizzo Mappa</th>
-						<td><input type="text" name="map_address" value="<?php echo esc_attr( get_option('map_address') ); ?>" /></td>
+						<td><input type="text" name="map_button" value="<?php echo esc_attr( get_option('map_button') ); ?>" /></td>
 					</tr>
 
 					<tr valign="top">
@@ -285,7 +285,7 @@ function mobile_bar_plugin_settings_page() {
 
 		// Registra coordinate mappa e impostazioni
 		
-		register_setting( 'mobile-bar-plugin-settings-group', 'map_address' );
+		register_setting( 'mobile-bar-plugin-settings-group', 'map_button' );
 		register_setting( 'mobile-bar-plugin-settings-group', 'map_button_color' );
 		register_setting( 'mobile-bar-plugin-settings-group', 'map_button_text' );
 		register_setting( 'mobile-bar-plugin-settings-group', 'map_icon', 'mobile_bar_plugin_handle_upload' );
