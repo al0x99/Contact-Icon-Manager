@@ -23,7 +23,6 @@ function contact_icon_manager_custom_css() {
     $gdpr_button_flex = get_option('gdpr_button_flex', 1);
     $whatsapp_button_flex = get_option('whatsapp_button_flex', 1);
     $phone_button_flex = get_option('phone_button_flex', 1);
-    $custom_field_flex = get_option('custom_field_flex', 1);
     $map_address_button_flex = get_option('map_address_button_flex', 1);
 
 
@@ -51,17 +50,14 @@ function contact_icon_manager_custom_css() {
         }
         .phone-button {
             background-color: <?php echo esc_attr( $phone_button_color ); ?>;
-            flex: <?php echo esc_attr($whatsapp_button_flex); ?>;
+            flex: <?php echo esc_attr($phone_button_flex); ?>;
         }
         .map_address {
             background-color: <?php echo esc_attr( $map_button_color ); ?>;
             flex: <?php echo esc_attr($map_address_button_flex); ?>;
             
         }
-        .mobile-bar-section.custom-field {
-            flex: <?php echo esc_attr($custom_field_flex); ?>;
-        }
-        /* altri metodi qui  */
+
 
         body {
             margin-bottom: <?php echo esc_attr( $bar_height ); ?>px;
@@ -86,21 +82,17 @@ function mobile_bar_plugin() {
         $gdpr_enabled = get_option( 'gdpr_enabled', false );
         $whatsapp_number = get_option( 'whatsapp_number', '' );
         $phone_number = get_option( 'phone_number', '' );
-        $custom_field_enabled = get_option( 'custom_field_enabled', false );
-        $custom_field_text = get_option( 'custom_field_text', '' );
-        $custom_field_background_color = get_option( 'custom_field_background_color', '#000000' );
 
         // Options for mobile bar height and icon width
         $gdpr_icon = get_option( 'gdpr_icon', '' );
         $whatsapp_icon = get_option( 'whatsapp_icon', '' );
         $phone_icon = get_option( 'phone_icon', '' );
-        $custom_field_icon = get_option( 'custom_field_icon', '' );
         $map_address = get_option( 'map_address', '' );
 
 
 
-		// Check if at least one option is enabled GDPR | WhatsApp | Phone | Custom Field 
-        if ( $gdpr_enabled || $whatsapp_number || $phone_number || $custom_field_enabled ) {
+		// Check if at least one option is enabled GDPR | WhatsApp | Phone 
+        if ( $gdpr_enabled || $whatsapp_number || $phone_number ) {
             if ( $gdpr_enabled ) {
             ?>
                 <script>
@@ -144,15 +136,6 @@ function mobile_bar_plugin() {
                     }
                 ?>
             </a>
-            <?php endif; ?>
-
-            <?php if ( $custom_field_enabled ) : ?>
-                <div class="mobile-bar-section" style="background-color: <?php echo esc_attr( $custom_field_background_color ); ?>;">
-                    <?php if ( $custom_field_icon ) : ?>
-                        <img src="<?php echo esc_url( $custom_field_icon ); ?>" alt="Custom Field Icon" />
-                    <?php endif; ?>
-                    <?php echo esc_html( $custom_field_text ); ?>
-                </div>
             <?php endif; ?>
 
             <?php if ( $map_address ) : ?>
