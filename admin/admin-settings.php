@@ -255,6 +255,7 @@ function mobile_bar_plugin_settings_page() {
 		register_setting('mobile-bar-plugin-settings-group', 'gdpr_button_flex');
 		register_setting('mobile-bar-plugin-settings-group', 'whatsapp_button_flex');
 		register_setting('mobile-bar-plugin-settings-group', 'phone_button_flex');
+		register_setting('mobile-bar-plugin-settings-group', 'map_button_flex');
 
 
 		// Testi per i pulsanti
