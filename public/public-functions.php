@@ -20,12 +20,16 @@ function contact_icon_manager_custom_css() {
     $whatsapp_button_color = get_option( 'whatsapp_button_color', '#000000' );
     $phone_button_color = get_option( 'phone_button_color', '#000000' );
     $gdpr_button_flex = get_option('gdpr_button_flex', 1);
+    $whatsapp_button_flex = get_option('whatsapp_button_flex', 1);
+    $phone_button_flex = get_option('phone_button_flex', 1);
+    $custom_field_flex = get_option('custom_field_flex', 1);
 
 
     ob_start();
     ?>
     <style>
         .mobile-bar {
+            display: flex;
             height: <?php echo esc_attr( $bar_height ); ?>px;
         }
         .mobile-bar-section {
@@ -37,12 +41,18 @@ function contact_icon_manager_custom_css() {
         }
         .gdpr-button {
             background-color: <?php echo esc_attr( $gdpr_button_color ); ?>;
+            flex: <?php echo esc_attr($gdpr_button_flex); ?>;
         }
         .whatsapp-button {
             background-color: <?php echo esc_attr( $whatsapp_button_color ); ?>;
+            flex: <?php echo esc_attr($whatsapp_button_flex); ?>;
         }
         .phone-button {
             background-color: <?php echo esc_attr( $phone_button_color ); ?>;
+            flex: <?php echo esc_attr($whatsapp_button_flex); ?>;
+        }
+        .mobile-bar-section.custom-field {
+            flex: <?php echo esc_attr($custom_field_flex); ?>;
         }
         /* altri metodi qui  */
 

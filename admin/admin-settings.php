@@ -48,6 +48,24 @@ function mobile_bar_plugin_settings_page() {
             wp_die( 'Non hai i permessi necessari per accedere a questa pagina.' );
         }
         ?>
+		
+		<div id="mobile-bar-preview" class="mobile-bar-preview">
+			<a href="#" class="mobile-bar-section gdpr-button">
+				<!-- Contenuto del pulsante GDPR -->
+			</a>
+			<a href="#" class="mobile-bar-section whatsapp-button">
+				<!-- Contenuto del pulsante WhatsApp -->
+			</a>
+			<a href="#" class="mobile-bar-section phone-button">
+				<!-- Contenuto del pulsante Telefono -->
+			</a>
+			<div class="mobile-bar-section custom-field">
+				<!-- Contenuto del pulsante Campo personalizzato -->
+			</div>
+		</div>
+
+
+
         <div class="wrap">
             <h1>Plugin interno in fase di test - White Paper</h1>
             <form method="post" action="options.php" enctype="multipart/form-data">
@@ -246,7 +264,10 @@ function mobile_bar_plugin_settings_page() {
         register_setting( 'mobile-bar-plugin-settings-group', 'custom_field_background_color' );
 
 		register_setting('mobile-bar-plugin-settings-group', 'gdpr_button_flex');
-		
+		register_setting('mobile-bar-plugin-settings-group', 'whatsapp_button_flex');
+		register_setting('mobile-bar-plugin-settings-group', 'phone_button_flex');
+		register_setting('mobile-bar-plugin-settings-group', 'custom_field_flex');
+
 
 		// Testi per i pulsanti
 		register_setting( 'mobile-bar-plugin-settings-group', 'gdpr_button_text' );
