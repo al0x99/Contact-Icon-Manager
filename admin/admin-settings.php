@@ -64,7 +64,7 @@ function mobile_bar_plugin_settings_page() {
 
 
         <div class="wrap">
-            <h1>Plugin interno in fase di test - White Paper</h1>
+            <h1>Custom Mobile Bar - Alpha version</h1>
             <form method="post" action="options.php" enctype="multipart/form-data">
                 <?php
                     settings_fields( 'mobile-bar-plugin-settings-group' );
