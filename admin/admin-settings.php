@@ -113,6 +113,12 @@ function mobile_bar_plugin_settings_page() {
                             <?php endif; ?>
                         </td>
                     </tr>
+
+					<tr valign="top">
+						<th scope="row">Larghezza pulsante GDPR (flex)</th>
+						<td><input type="number" name="gdpr_button_flex" value="<?php echo esc_attr(get_option('gdpr_button_flex', 1)); ?>" min="0" step="0.1" /></td>
+					</tr>
+
                     <tr valign="top">
                         <th scope="row">GDPR</th>
                         <td><input type="checkbox" name="gdpr_enabled" value="1" <?php checked(1, get_option('gdpr_enabled'), true); ?> /></td>
@@ -238,6 +244,9 @@ function mobile_bar_plugin_settings_page() {
         register_setting( 'mobile-bar-plugin-settings-group', 'custom_field_enabled' );
         register_setting( 'mobile-bar-plugin-settings-group', 'custom_field_text' );
         register_setting( 'mobile-bar-plugin-settings-group', 'custom_field_background_color' );
+
+		register_setting('mobile-bar-plugin-settings-group', 'gdpr_button_flex');
+		
 
 		// Testi per i pulsanti
 		register_setting( 'mobile-bar-plugin-settings-group', 'gdpr_button_text' );

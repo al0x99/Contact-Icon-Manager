@@ -19,6 +19,8 @@ function contact_icon_manager_custom_css() {
     $gdpr_button_color = get_option( 'gdpr_button_color', '#000000' );
     $whatsapp_button_color = get_option( 'whatsapp_button_color', '#000000' );
     $phone_button_color = get_option( 'phone_button_color', '#000000' );
+    $gdpr_button_flex = get_option('gdpr_button_flex', 1);
+
 
     ob_start();
     ?>
