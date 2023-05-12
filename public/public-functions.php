@@ -19,10 +19,12 @@ function contact_icon_manager_custom_css() {
     $gdpr_button_color = get_option( 'gdpr_button_color', '#000000' );
     $whatsapp_button_color = get_option( 'whatsapp_button_color', '#000000' );
     $phone_button_color = get_option( 'phone_button_color', '#000000' );
+    $map_button_color = get_option( 'map_button_color', '#000000' );
     $gdpr_button_flex = get_option('gdpr_button_flex', 1);
     $whatsapp_button_flex = get_option('whatsapp_button_flex', 1);
     $phone_button_flex = get_option('phone_button_flex', 1);
     $custom_field_flex = get_option('custom_field_flex', 1);
+    $map_address_button_flex = get_option('map_address_button_flex', 1);
 
 
     ob_start();
@@ -50,6 +52,11 @@ function contact_icon_manager_custom_css() {
         .phone-button {
             background-color: <?php echo esc_attr( $phone_button_color ); ?>;
             flex: <?php echo esc_attr($whatsapp_button_flex); ?>;
+        }
+        .map_address {
+            background-color: <?php echo esc_attr( $map_button_color ); ?>;
+            flex: <?php echo esc_attr($map_address_button_flex); ?>;
+            
         }
         .mobile-bar-section.custom-field {
             flex: <?php echo esc_attr($custom_field_flex); ?>;
@@ -84,8 +91,6 @@ function mobile_bar_plugin() {
         $custom_field_background_color = get_option( 'custom_field_background_color', '#000000' );
 
         // Options for mobile bar height and icon width
-		$bar_height = get_option( 'bar_height', '60' );
-		$icon_width = get_option( 'icon_width', '20' );
         $gdpr_icon = get_option( 'gdpr_icon', '' );
         $whatsapp_icon = get_option( 'whatsapp_icon', '' );
         $phone_icon = get_option( 'phone_icon', '' );
@@ -96,9 +101,6 @@ function mobile_bar_plugin() {
 
 		// Check if at least one option is enabled GDPR | WhatsApp | Phone | Custom Field 
         if ( $gdpr_enabled || $whatsapp_number || $phone_number || $custom_field_enabled ) {
-			$gdpr_button_color = get_option( 'gdpr_button_color', '#000000' );
-			$whatsapp_button_color = get_option( 'whatsapp_button_color', '#000000' );
-			$phone_button_color = get_option( 'phone_button_color', '#000000' );
             if ( $gdpr_enabled ) {
             ?>
                 <script>

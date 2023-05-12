@@ -95,6 +95,12 @@ function mobile_bar_plugin_settings_page() {
 						<td><input type="number" name="custom_field_flex" value="<?php echo esc_attr(get_option('custom_field_flex', 1)); ?>" min="0" step="0.1" /></td>
 					</tr>
 
+					
+					<tr valign="top">
+						<th scope="row">Larghezza pulsante Mappa (flex)</th>
+						<td><input type="number" name="custom_field_flex" value="<?php echo esc_attr(get_option('custom_field_flex', 1)); ?>" min="0" step="0.1" /></td>
+					</tr>
+
 
 
 					<tr valign="top">
@@ -111,10 +117,6 @@ function mobile_bar_plugin_settings_page() {
 						<td><input type="text" name="map_address" value="<?php echo esc_attr( get_option('map_address') ); ?>" /></td>
 					</tr>
 
-					<tr valign="top">
-						<th scope="row">Colore di sfondo del pulsante Mappa</th>
-						<td><input type="color" name="map_button_color" value="<?php echo esc_attr( get_option('map_button_color') ); ?>" /></td>
-					</tr>
 					<tr valign="top">
 						<th scope="row">Testo del pulsante Mappa</th>
 						<td><input type="text" name="map_button_text" value="<?php echo esc_attr( get_option('map_button_text') ); ?>" /></td>
@@ -247,6 +249,10 @@ function mobile_bar_plugin_settings_page() {
 					<tr valign="top">
 						<th scope="row">Colore pulsante Telefono</th>
 						<td><input type="color" name="phone_button_color" value="<?php echo esc_attr( get_option('phone_button_color') ); ?>" /></td>
+					</tr>
+					<tr valign="top">
+						<th scope="row">Colore pulsante Mappa</th>
+						<td><input type="color" name="map_button_color" value="<?php echo esc_attr( get_option('map_button_color') ); ?>" /></td>
 					</tr>
 
 					<tr valign="top">
