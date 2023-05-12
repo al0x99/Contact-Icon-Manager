@@ -59,9 +59,6 @@ function mobile_bar_plugin_settings_page() {
 			<a href="#" class="mobile-bar-section phone-button">
 				<!-- Contenuto del pulsante Telefono -->
 			</a>
-			<div class="mobile-bar-section custom-field">
-				<!-- Contenuto del pulsante Campo personalizzato -->
-			</div>
 		</div>
 
 
@@ -91,14 +88,8 @@ function mobile_bar_plugin_settings_page() {
 					</tr>
 
 					<tr valign="top">
-						<th scope="row">Larghezza pulsante Custom (flex)</th>
-						<td><input type="number" name="custom_field_flex" value="<?php echo esc_attr(get_option('custom_field_flex', 1)); ?>" min="0" step="0.1" /></td>
-					</tr>
-
-					
-					<tr valign="top">
 						<th scope="row">Larghezza pulsante Mappa (flex)</th>
-						<td><input type="number" name="custom_field_flex" value="<?php echo esc_attr(get_option('custom_field_flex', 1)); ?>" min="0" step="0.1" /></td>
+						<td><input type="number" name="map_address_flex" value="<?php echo esc_attr(get_option('map_address_flex', 1)); ?>" min="0" step="0.1" /></td>
 					</tr>
 
 
@@ -215,29 +206,6 @@ function mobile_bar_plugin_settings_page() {
 							<input type="button" class="button custom_media_remove" value="Rimuovi immagine">
 						</td>
                     </tr>
-                    <tr valign="top">
-                        <th scope="row">Campo personalizzato</th>
-                        <td><input type="checkbox" name="custom_field_enabled" value="1" <?php checked(1, get_option('custom_field_enabled'), true); ?> /></td>
-                    </tr>
-                    <tr valign="top">
-                        <th scope="row">Testo del campo personalizzato</th>
-                        <td><input type="text" name="custom_field_text" value="<?php echo esc_attr( get_option('custom_field_text') ); ?>" /></td>
-                    </tr>
-                    <tr valign="top">
-                        <th scope="row">Icona del campo personalizzato</th>
-                        <td>
-							<input type="hidden" name="custom_field_icon" class="custom_media_url" value="<?php echo esc_url( get_option( 'custom_field_icon' ) ); ?>">
-							<input type="button" class="button custom_media_upload" value="Scegli immagine">
-							<?php if ( $icon = get_option( 'custom_field_icon' ) ) : ?>
-								<img src="<?php echo esc_url( $icon ); ?>" alt="Phone Icon" width="20" class="custom_media_image">
-							<?php endif; ?>
-							<input type="button" class="button custom_media_remove" value="Rimuovi immagine">
-						</td>
-                    </tr>
-                    <tr valign="top">
-                        <th scope="row">Colore di sfondo del campo personalizzato</th>
-                        <td><input type="color" name="custom_field_background_color" value="<?php echo esc_attr( get_option('custom_field_background_color') ); ?>" /></td>
-                    </tr>
 					<tr valign="top">
 						<th scope="row">Colore pulsante GDPR</th>
 						<td><input type="color" name="gdpr_button_color" value="<?php echo esc_attr( get_option('gdpr_button_color') ); ?>" /></td>
@@ -283,14 +251,10 @@ function mobile_bar_plugin_settings_page() {
         register_setting( 'mobile-bar-plugin-settings-group', 'gdpr_enabled' );
         register_setting( 'mobile-bar-plugin-settings-group', 'whatsapp_number' );
         register_setting( 'mobile-bar-plugin-settings-group', 'phone_number' );
-        register_setting( 'mobile-bar-plugin-settings-group', 'custom_field_enabled' );
-        register_setting( 'mobile-bar-plugin-settings-group', 'custom_field_text' );
-        register_setting( 'mobile-bar-plugin-settings-group', 'custom_field_background_color' );
 
 		register_setting('mobile-bar-plugin-settings-group', 'gdpr_button_flex');
 		register_setting('mobile-bar-plugin-settings-group', 'whatsapp_button_flex');
 		register_setting('mobile-bar-plugin-settings-group', 'phone_button_flex');
-		register_setting('mobile-bar-plugin-settings-group', 'custom_field_flex');
 
 
 		// Testi per i pulsanti
@@ -318,7 +282,6 @@ function mobile_bar_plugin_settings_page() {
 		register_setting( 'mobile-bar-plugin-settings-group', 'gdpr_icon', 'mobile_bar_plugin_handle_upload' );
 		register_setting( 'mobile-bar-plugin-settings-group', 'whatsapp_icon', 'mobile_bar_plugin_handle_upload' );
 		register_setting( 'mobile-bar-plugin-settings-group', 'phone_icon', 'mobile_bar_plugin_handle_upload' );
-		register_setting( 'mobile-bar-plugin-settings-group', 'custom_field_icon', 'mobile_bar_plugin_handle_upload' );
 
 		// Registra coordinate mappa e impostazioni
 		
