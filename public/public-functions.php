@@ -19,6 +19,8 @@ function contact_icon_manager_custom_css() {
     $gdpr_button_color = get_option( 'gdpr_button_color', '#000000' );
     $whatsapp_button_color = get_option( 'whatsapp_button_color', '#000000' );
     $phone_button_color = get_option( 'phone_button_color', '#000000' );
+    $show_on_desktop = get_option('display_on_desktop', false);
+    $show_on_mobile = get_option('display_on_mobile', true);
 
     ob_start();
     ?>
@@ -44,6 +46,7 @@ function contact_icon_manager_custom_css() {
         }
         /* altri metodi qui  */
 
+        <?php if (($show_on_desktop && !wp_is_mobile()) || ($show_on_mobile && wp_is_mobile())): ?>
         body {
             margin-bottom: <?php echo esc_attr( $bar_height ); ?>px;
         }

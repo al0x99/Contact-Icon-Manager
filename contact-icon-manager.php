@@ -2,7 +2,7 @@
 /*
 Plugin Name: Contact Icon Manager
 Description: Plugin che permette di aggiungere una barra fissa con dismensione regolabile in cui inserire icone di contatto e link ad essi associati con push al datalayer degli eventi
-Version: 3.2.5
+Version: 3.2.6
 Author: Alin Sfirschi
 Author URI: https://wpaper.it
 GitHub Plugin URI: https://github.com/al0x99/Contact-Icon-Manager
