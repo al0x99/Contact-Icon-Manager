@@ -46,10 +46,12 @@ function contact_icon_manager_custom_css() {
         }
         /* altri metodi qui  */
 
+        
         <?php if (($show_on_desktop && !wp_is_mobile()) || ($show_on_mobile && wp_is_mobile())): ?>
         body {
             margin-bottom: <?php echo esc_attr( $bar_height ); ?>px;
         }
+        <?php endif; ?>
     </style>
     <?php
     $custom_css = ob_get_clean();
