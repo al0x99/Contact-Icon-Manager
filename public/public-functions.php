@@ -33,9 +33,13 @@ function contact_icon_manager_custom_css() {
             line-height: <?php echo esc_attr( $bar_height ); ?>px;
         }
         
-        .mobile-bar-section, .mobile-bar-section a, .mobile-bar-section a:visited, .mobile-bar-section a:hover, .mobile-bar-section a:active {
+        .mobile-bar-section, .mobile-bar-section a, .mobile-bar-section a:visited {
             color: <?php echo esc_attr( get_option( 'buttons_text_color', '#ffffff' ) ); ?>;
             text-decoration: none;
+        }
+
+        .mobile-bar-section a:hover, .mobile-bar-section a:active {
+            color: <?php echo esc_attr( get_option( 'buttons_text_color', '#ffffff' ) ); ?>;
         }
 
         .mobile-bar-section img {
