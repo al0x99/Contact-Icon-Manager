@@ -144,17 +144,6 @@ function mobile_bar_plugin_settings_page() {
 							<input type="button" class="button custom_media_remove" value="Rimuovi immagine">
 						</td>
 
-						!TODO: Add icon picker
-						<!-- <div class="icon-picker"> 
-							<img src="<?php echo plugin_dir_url( __FILE__ ); ?>icons/whatsapp.svg" alt="Predefined Icon" width="20" class="predefined_icon">
-							<input type="radio" class="icon-picker-radio" name="map_icon_predefined" value="<?php echo plugin_dir_url( __FILE__ ); ?>icons/icon_name.svg">
-						</div>
-						<div class="icon-picker">
-							<span>Nessuna icona predefinita</span>
-							<input type="radio" class="icon-picker-radio" name="map_icon_predefined" value="">
-						</div> -->
-						
-
                     </tr>
                     <tr valign="top">
                         <th scope="row">Numero di telefono</th>
