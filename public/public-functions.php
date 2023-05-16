@@ -34,12 +34,12 @@ function contact_icon_manager_custom_css() {
         }
         
         .mobile-bar-section, .mobile-bar-section a, .mobile-bar-section a:visited {
-            color: <?php echo esc_attr( get_option( 'buttons_text_color', '#ffffff' ) ); ?>;
+            color: <?php echo esc_attr( get_option( 'buttons_text_color', '#ffffff' ) ); ?> !important;
             text-decoration: none;
         }
 
         .mobile-bar-section a:hover, .mobile-bar-section a:active {
-            color: <?php echo esc_attr( get_option( 'buttons_text_color', '#ffffff' ) ); ?>;
+            color: <?php echo esc_attr( get_option( 'buttons_text_color', '#ffffff' ) ); ?> !important;
         }
 
         .mobile-bar-section img {
