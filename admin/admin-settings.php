@@ -190,6 +190,12 @@ function mobile_bar_plugin_settings_page() {
 							<input type="button" class="button custom_media_remove" value="Rimuovi immagine">
 						</td>
                     </tr>
+					
+					<tr valign="top">
+						<th scope="row">Colore del testo dei pulsanti</th>
+						<td><input type="color" name="buttons_text_color" value="<?php echo esc_attr( get_option('buttons_text_color') ); ?>" /></td>
+					</tr>
+
                     <tr valign="top">
                         <th scope="row">Colore di sfondo del campo personalizzato</th>
                         <td><input type="color" name="custom_field_background_color" value="<?php echo esc_attr( get_option('custom_field_background_color') ); ?>" /></td>
@@ -238,6 +244,7 @@ function mobile_bar_plugin_settings_page() {
         register_setting( 'mobile-bar-plugin-settings-group', 'custom_field_enabled' );
         register_setting( 'mobile-bar-plugin-settings-group', 'custom_field_text' );
         register_setting( 'mobile-bar-plugin-settings-group', 'custom_field_background_color' );
+		register_setting( 'mobile-bar-plugin-settings-group', 'buttons_text_color' );
 
 		// Testi per i pulsanti
 		register_setting( 'mobile-bar-plugin-settings-group', 'gdpr_button_text' );
