@@ -28,11 +28,10 @@ function contact_icon_manager_custom_css() {
         .mobile-bar {
             height: <?php echo esc_attr( $bar_height ); ?>px;
         }
-        .mobile-bar-section a, .mobile-bar-section a:visited, .mobile-bar-section a:hover, .mobile-bar-section a:active {
+        .mobile-bar-section {
             height: <?php echo esc_attr( $bar_height ); ?>px;
             line-height: <?php echo esc_attr( $bar_height ); ?>px;
             color: <?php echo esc_attr( get_option( 'buttons_text_color', '#ffffff' ) ); ?>;
-            text-decoration: none;
         }
         .mobile-bar-section img {
             width: <?php echo esc_attr( $icon_width ); ?>px;
