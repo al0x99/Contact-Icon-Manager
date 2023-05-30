@@ -34,6 +34,8 @@
     height: 100%;
 }
 
-#cookiescript_badge {
-    bottom: 55px !important;
+@media only screen and (max-width: 768px) {
+    #cookiescript_badge {
+        bottom: 55px !important;
+    }
 }
