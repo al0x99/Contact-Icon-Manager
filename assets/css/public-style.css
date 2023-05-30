@@ -35,5 +35,5 @@
 }
 
 #cookiescript_badge {
-    bottom: 55px;
+    bottom: 55px !important;
 }
