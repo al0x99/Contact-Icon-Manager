@@ -9,7 +9,7 @@
     right: 0;
     background-color: transparent;
     padding: 10px 0;
-    z-index: 9999;
+    z-index: 100;
     width: 100%;
     box-sizing: border-box;
     align-items:center;
